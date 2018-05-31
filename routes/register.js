@@ -6,6 +6,12 @@ var sessionHelper = require('../helpers/session-helper');
 
 /* POST register. */
 router.post('/', sessionHelper, function(req, res, next) {
+  if(!req.body.username)
+    res.status(400).send('username is required');
+    else if(!req.body.password)
+    res.status(400).send('password is required');
+    else if(!req.body.location)
+    res.status(400).send('location is required');
 
   User.findOrCreate({where: {Username: req.body.username}, 
     defaults: {

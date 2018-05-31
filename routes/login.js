@@ -8,6 +8,11 @@ var sessionHelper = require('../helpers/session-helper');
 router.post('/', sessionHelper ,function(req, res, next) {
   var username = req.body.username,
       password = req.body.password;
+  
+  if(!username)
+    res.status(400).send('username is required');
+    else if(!password)
+    res.status(400).send('password is required');
 
   User.findOne({ where: { Username: username } }).then(function (user) {
       if (!user) {
