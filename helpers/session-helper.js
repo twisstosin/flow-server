@@ -2,9 +2,9 @@
 // middleware function to check for authorization
 var sessionChecker = (req, res, next) => {
     if (req.headers.api_key != 'twisstedkey') {
-        res.redirect('/null');
+        res.send(403, 'Auth Failed')
     } else {
         next();
     }    
   };
-export default sessionChecker;
+module.exports = sessionChecker;
