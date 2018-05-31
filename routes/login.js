@@ -13,9 +13,9 @@ router.post('/', sessionHelper ,function(req, res, next) {
       if (!user) {
           res.sendStatus(404);
       } else if (!user.validPassword(password)) {
-          res.send(402, 'invalid password')
+          res.send(402).send('invalid password');
       } else {
-          res.send(200, user);
+          res.status(200).send(user);
       }
   });
 });
