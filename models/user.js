@@ -1,8 +1,8 @@
 'use strict';
 
-import {bcrypt} from 'bcrypt'
+var bcrypt = require ('bcrypt');
 
-export default function (sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => {
   var User = sequelize.define('User', {
     Name: DataTypes.STRING,
     Location: DataTypes.STRING,
