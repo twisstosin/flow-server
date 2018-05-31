@@ -3,22 +3,19 @@ var router = express.Router();
 var db = require('../models/index');
 var User = db.sequelize.import('../models/user');
 var sessionHelper = require('../helpers/session-helper');
+var bcrypt = require ('bcryptjs');
 
-/* GET login page. */
+/* POST register. */
 router.post('/', sessionHelper, function(req, res, next) {
+  const salt = bcrypt.genSaltSync();
 
   User.create({ Name : req.body.name, Username: req.body.username, Password: req.body.password })
-  .then(() => User.findOrCreate({where: {Username: req.body.username}, defaults: {Name: 'John Doe'}}))
-  .spread((user, created) => {
-    console.log(user.get({
-      plain: true
-    }))
-    console.log(created)
+  .then(user => {
     res.send(200, user)
   })
   .catch(error =>{
     console.log(error);
-    res.send(404)
+    res.send(500, error)
   });
 });
 

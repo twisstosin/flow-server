@@ -4,7 +4,7 @@ var db = require('../models/index');
 var User = db.sequelize.import('../models/user');
 var sessionHelper = require('../helpers/session-helper');
 
-/* GET login page. */
+/* POST login. */
 router.post('/', sessionHelper ,function(req, res, next) {
   var username = req.body.username,
       password = req.body.password;
