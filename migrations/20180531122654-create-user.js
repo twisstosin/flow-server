@@ -14,10 +14,13 @@ export function up(queryInterface, Sequelize) {
       type: Sequelize.STRING
     },
     Username: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true
     },
     Password: {
-      type: Sequelize.STRING
+      type: Sequelize.STRING,
+      allowNull: false,
     },
     createdAt: {
       allowNull: false,
