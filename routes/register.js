@@ -28,7 +28,7 @@ router.post('/', sessionHelper, function(req, res, next) {
     if(created)
     res.status(200).send(user)
     else
-    res.status(400).send('user already exists')
+    res.status(409).send('user already exists')
   })
   .catch(error =>{
     console.log(error);
